@@ -27,12 +27,12 @@ SELECT  calls.ivr_id AS calls_ivr_id
 , steps.customer_phone AS customer_phone
 , steps.billing_account_id AS billing_account_id
 
- FROM `summer-ranger-409613.keepcoding.ivr_calls` AS calls
+ FROM keepcoding.ivr_calls AS calls
 FULL 
-JOIN summer-ranger-409613.keepcoding.ivr_modules AS modules
+JOIN keepcoding.ivr_modules AS modules
 ON calls.ivr_id= modules.ivr_id
 FULL 
-JOIN summer-ranger-409613.keepcoding.ivr_steps AS steps
+JOIN keepcoding.ivr_steps AS steps
 ON steps.ivr_id= modules.ivr_id and steps.module_sequece= modules.module_sequece
 
 ORDER BY 1
