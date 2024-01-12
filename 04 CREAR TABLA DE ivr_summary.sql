@@ -8,7 +8,7 @@ WITH base_query AS (
     MAX(COALESCE(customer_phone, 'UNKNOWN')) AS customer_phone,
     MAX(COALESCE(billing_account_id, 'UNKNOWN')) AS billing_account_id
   FROM 
-    `summer-ranger-409613.keepcoding.ivr_detail` AS detail
+   keepcoding.ivr_detail AS detail
   WHERE
     (
       document_type IS DISTINCT FROM 'UNKNOWN'
@@ -74,15 +74,15 @@ SELECT
 FROM 
   base_query AS doc
 LEFT JOIN 
-  `summer-ranger-409613.keepcoding.ivr_detail` AS detail
+ keepcoding.ivr_detail AS detail
 ON 
   doc.calls_ivr_id = detail.calls_ivr_id
 LEFT JOIN 
-  `summer-ranger-409613.keepcoding.ivr_modules` AS modules
+  keepcoding.ivr_modules AS modules
 ON 
   doc.calls_ivr_id = modules.ivr_id AND modules.module_name = 'AVERIA_MASIVA'
 LEFT JOIN 
-  `summer-ranger-409613.keepcoding.ivr_steps` AS steps
+  keepcoding.ivr_steps AS steps
 ON 
   doc.calls_ivr_id = steps.ivr_id
   AND (steps.step_name = 'CUSTOMERINFOBYPHONE.TX' AND steps.step_description_error = 'UNKNOWN'
